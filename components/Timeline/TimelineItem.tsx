@@ -1,12 +1,12 @@
 "use client";
 
 const TimelineItem = ({ date }: { date: string }) => (
-  <li className="relative cursor-pointer">
-    <span className="absolute top-1 -left-2.5 h-4 w-4 rounded-full border-4 bg-white" />
-    <div className="pl-8">
-      <span>{date}</span>
+  <button type="button" className="relative cursor-pointer group">
+    <span className="absolute top-1 -left-[0.525rem] h-4 w-4 rounded-full border border-gray-900 bg-white group-hover:bg-gray-900" />
+    <div className="">
+      <span className="group-hover:font-bold">{date}</span>
     </div>
-  </li>
+  </button>
 );
 
 export default TimelineItem;

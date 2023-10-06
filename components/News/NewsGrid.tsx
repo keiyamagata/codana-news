@@ -5,6 +5,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import NewsItem from "./NewsItem";
+import useDateStore from "@/store/dateStore";
 import type { NewsItemType } from "@/types/NewsTypes";
 
 const NewsGrid = () => {
@@ -12,10 +13,11 @@ const NewsGrid = () => {
    * Fetch news items using the useInfiniteQuery hook from react-query
    */
   const pageSize = 24;
+  const selectedDate = useDateStore((state) => state.selectedDate);
 
   const fetchNewsItems = async (page: number) => {
     const { data } = await axios.get(
-      `https://newsapi.org/v2/everything?sources=techcrunch&page=${page}&pageSize=${pageSize}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
+      `https://newsapi.org/v2/everything?sources=techcrunch&page=${page}&pageSize=${pageSize}&from=${selectedDate}&to=${selectedDate}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
     );
 
     return data.articles;
@@ -24,9 +26,10 @@ const NewsGrid = () => {
   const {
     data: newsItems,
     isSuccess,
-    fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
+    fetchNextPage,
+    refetch,
   } = useInfiniteQuery(
     ["newsItems"],
     ({ pageParam = 1 }) => fetchNewsItems(pageParam),
@@ -49,6 +52,10 @@ const NewsGrid = () => {
   useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();
   }, [inView, fetchNextPage, hasNextPage]);
+
+  useEffect(() => {
+    refetch();
+  }, [selectedDate, refetch]);
 
   return (
     <>

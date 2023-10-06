@@ -1,4 +1,4 @@
-import { format, sub } from "date-fns";
+import { sub } from "date-fns";
 
 type DatesRange = {
   startDate: Date;
@@ -6,11 +6,11 @@ type DatesRange = {
 };
 
 const calculateDatesRange = ({ startDate, endDate }: DatesRange) => {
-  const datesArray: string[] = [];
+  const datesArray: Date[] = [];
   let currentDate = endDate;
 
   while (startDate <= currentDate) {
-    datesArray.push(format(new Date(currentDate), "dd MMM"));
+    datesArray.push(new Date(currentDate));
     currentDate = sub(currentDate, { days: 1 });
   }
 

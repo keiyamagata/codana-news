@@ -12,4 +12,6 @@ export type NewsItemType = {
 export type NewsCardType = {
   item: NewsItemType;
   itemRef?: (node?: Element | null | undefined) => void;
+  headline?: boolean;
+  index?: number;
 };

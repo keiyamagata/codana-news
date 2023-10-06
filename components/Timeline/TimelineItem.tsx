@@ -17,16 +17,16 @@ const TimelineItem = ({ date }: { date: Date }) => {
     <button
       type="button"
       onClick={handleClickTimelineItem}
-      className="relative cursor-pointer group w-4/5"
+      className="relative cursor-pointer group w-4/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 rounded-sm"
     >
       <span
-        className={`absolute top-1 -left-[0.525rem] h-4 w-4 rounded-full border border-gray-900 group-hover:bg-gray-900 ${
-          selected ? "bg-gray-900" : "bg-white"
+        className={`absolute top-1 -left-[0.525rem] h-4 w-4 rounded-full border border-[#8400FF] group-hover:bg-[#8400FF] ${
+          selected ? "bg-[#8400FF]" : "bg-white"
         }`}
       />
       <span
         className={`group-hover:font-bold ${
-          selected ? "font-bold" : "font-normal"
+          selected ? "font-bold underline" : "font-normal"
         }`}
       >
         {format(date, "dd MMM")}

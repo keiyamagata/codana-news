@@ -26,6 +26,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "s.yimg.com",
       },
+      {
+        protocol: "https",
+        hostname: "s.yimg.com",
+      },
     ],
   },
 };

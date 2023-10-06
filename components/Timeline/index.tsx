@@ -14,7 +14,7 @@ const Timeline = () => {
   });
 
   return (
-    <ul className="h-[100dvh] w-40 flex flex-col justify-around ml-3 border-l border-gray-900">
+    <ul className="h-[100dvh] w-40 flex flex-col justify-around ml-3 border-l border-r-2 border-l-[#8500FF] border-r-gray-900">
       {dates.map((date) => (
         <TimelineItem date={date} key={date.toString()} />
       ))}

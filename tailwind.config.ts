@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       gridTemplateColumns: {
         main: "10rem 1fr",
+        mainMobile: "5rem 1fr",
       },
     },
   },

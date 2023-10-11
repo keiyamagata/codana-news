@@ -1,4 +1,4 @@
-export type NewsItemType = {
+type NewsItemType = {
   source: { id: string; name: string };
   author: string;
   title: string;
@@ -9,9 +9,11 @@ export type NewsItemType = {
   content: string;
 };
 
-export type NewsCardType = {
+type NewsCardType = {
   item: NewsItemType;
   itemRef?: (node?: Element | null | undefined) => void;
-  headline?: boolean;
-  index?: number;
+  isHeadline?: boolean;
+  index: number;
 };
+
+export type { NewsCardType, NewsItemType };

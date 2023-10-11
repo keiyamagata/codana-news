@@ -4,10 +4,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.mos.cms.futurecdn.net",
-      },
-      {
-        protocol: "https",
         hostname: "**",
       },
     ],

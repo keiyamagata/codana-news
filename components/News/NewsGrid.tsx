@@ -41,7 +41,6 @@ const NewsGrid = ({ isHeadline }: { isHeadline?: boolean }) => {
   const {
     data: trendingItems,
     error: trendingError,
-    isSuccess: trendingIsSuccess,
     isLoading: trendingIsLoading,
     isFetching: trendingIsFetching,
     hasNextPage: trendingHasNextPage,
@@ -96,7 +95,7 @@ const NewsGrid = ({ isHeadline }: { isHeadline?: boolean }) => {
       const filtredKeywords = removeStopWords(keywords);
       setTrendingWords(filtredKeywords);
     }
-  }, [headlines, newsItems]);
+  }, [headlines]);
 
   return (
     <>

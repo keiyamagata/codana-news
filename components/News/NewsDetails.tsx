@@ -30,7 +30,7 @@ const NewsDetails = ({ url, title }: NewsDetailsProps) => {
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-[1000]" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -55,7 +55,7 @@ const NewsDetails = ({ url, title }: NewsDetailsProps) => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="relative w-full transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <iframe src={url} title={title} />
+                  <iframe src={url} width="800px" height="600px" />
 
                   <div className="absolute top-4 right-4">
                     <button

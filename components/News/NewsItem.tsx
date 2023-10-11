@@ -2,29 +2,49 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import type { NewsCardType } from "@/types/NewsTypes";
 // import NewsDetails from "./NewsDetails";
 
-const NewsItem = ({ item, itemRef, headline, index }: NewsCardType) => {
+const fadeIn = {
+  initial: {
+    opacity: 0,
+    y: 30,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const NewsItem = ({ item, itemRef, isHeadline, index }: NewsCardType) => {
   return (
-    <article
+    <motion.article
       key={item.title}
       ref={itemRef}
       className={`w-full pb-8 ${
-        headline && index === 0 && "md:col-span-full lg:flex md:gap-4 lg:h-96"
+        isHeadline &&
+        index === 0 &&
+        "md:col-span-full xl:flex lg:items-center md:gap-4 lg:h-[46rem] xl:h-96"
       }`}
+      variants={fadeIn}
+      initial="initial"
+      whileInView="animate"
+      transition={{ delay: 0.05 * index }}
+      viewport={{ once: true }}
     >
       <div
         className={`relative w-full h-60 rounded-lg overflow-hidden ${
-          headline && index === 0 && "md:h-96"
+          isHeadline && index === 0 && "md:h-96"
         }`}
       >
         <Image
-          src={item.urlToImage}
+          src={item.urlToImage || "/images/placeholder.png"}
           alt={`image for ${item.title}`}
           fill
           sizes="100%"
           className="object-cover"
+          priority
         />
       </div>
       <div className="flex flex-col justify-between h-80">
@@ -32,7 +52,6 @@ const NewsItem = ({ item, itemRef, headline, index }: NewsCardType) => {
           <div className="h-24">
             <h3 className="text-xl font-bold line-clamp-3">{item.title}</h3>
           </div>
-          <span className="text-xs italic">{item.author}</span>
           <p className="pt-2 line-clamp-5">{item.description}</p>
         </div>
         <Link
@@ -44,9 +63,9 @@ const NewsItem = ({ item, itemRef, headline, index }: NewsCardType) => {
         >
           Read more
         </Link>
+        {/* <NewsDetails url={item.url} title={item.title} /> */}
       </div>
-      {/* <NewsDetails url={item.url} title={item.title} /> */}
-    </article>
+    </motion.article>
   );
 };
 
